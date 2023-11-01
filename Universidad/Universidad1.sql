@@ -69,4 +69,32 @@ order by nombre desc;
 select *
 from alumno
 where sexo = 'm'
-order by nombre asc;
+ORDER BY NOMBRE ASC ;
+
+#CAMBIAR EL APELLIDO DE JUAQUIN CHUMACERO POR CHUMACEIRO
+update alumno
+set nombre='joaquin chumaceiro'
+where registro=111;#where es importante sin ello aqui actualizamos el nombre de todos nuestros registros
+
+#Eliminar estudiante con registro 444
+delete from alumno
+where registro =444;
+
+#borrar a joaquin chumaceiro
+delete from alumno
+WHERE Nombre = 'joaquin chumaceiro' ;
+
+#BORRAR ALUMNOS VARONES
+delete from alumno
+where Sexo = 'm';
+
+#eLIMINAR LA TABLA ALUMNO
+DROP TABLE ALUMNO;
+
+#ELIMINAR BASE DE DATOS UNIVERSIDAD
+DROP DATABASE UNIVERSIDAD;
+
+
+
+select *
+from alumno;
