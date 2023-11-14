@@ -19,6 +19,7 @@ insert into alumno values (333,'Fabiola Méndez','m','s',7242222,'Av. Landivar #
 insert into alumno values (444,'Carlos Camacho','m','s',null,'Calla Ichilo #500');
 insert into alumno values (555,'Patricia Aguilera','f','c',7102030,'Calle Ichilo #504');
 
+
 delete from alumno where registro = 111;
 
 # Mostrar el registro y nombre del alumno
