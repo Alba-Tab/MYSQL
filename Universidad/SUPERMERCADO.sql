@@ -148,6 +148,96 @@ select min(monto)
 from notaventa;
 
 
+#mostrar el monto promedio vendido
+select avg(monto)
+from notaventa;
+
+#mostrar todos los productos comprados por joaquin chumacero
+
+select Nro,fecha, monto, producto.nombre, cantidad
+from Cliente,notaventa,vende,producto
+where ci=cicliente and nro=nro_notaventa and cod_producto=codigo and cliente.nombre='joaquin chumacero';
+
+#cuantas cocacolas compro joaquin chumacero
+
+select sum(cantidad)
+from Cliente,notaventa,vende,producto
+where ci=cicliente and nro=nro_notaventa and cod_producto=codigo and cliente.nombre='joaquin chumacero'
+and producto.nombre='cocacola 2L';
+
+
+select sum(cantidad)
+from Cliente,notaventa,vende,producto
+where ci=cicliente and nro=nro_notaventa and cod_producto=codigo and cliente.nombre='joaquin chumacero'
+and producto.nombre like '%cocacola%';
+
+#mostrar la cantidad de azucar de un kg vendido
+select sum(vende.cantidad)
+from vende, producto
+where cod_producto=producto.codigo and nombre like'%fanta%';
+
+#mostrar el monto total ingresado por la venta de fanta
+
+select sum(cantidad*vende.precio)
+from producto, vende
+where codigo=cod_producto and nombre ='fanta 2L';
+
+#cuantos productos pertenecen a la categoria gaseosa
+
+select count(IDCategoria)
+from categoria,producto
+where id=IDCategoria and categoria.nombre='gaseosa';
+
+
+# Mod¡strar en que notaas de venta fueron vendidos los abarroptes
+select nro,fecha,monto
+from categoria,producto,vende,notaventa
+where ID=IDCategoria and Codigo=cod_producto and nro= nro_Notaventa and ID=4;
+
+select nro,fecha,monto
+from notaventa
+where nro in (
+			select nro_notaventa 
+			from vende
+			where cod_producto in( select codigo
+									from producto
+									where idcategoria in(select id
+														from categoria
+														where nombre='abarrotes')));
+
+# Mostrar el nombre y el codigo de los productos que se vendieron
+select CODIGO,NOMBRE
+from PRODUCTO
+where codigo IN (
+					SELECT COD_PRODUCTO
+                    FROM VENDE
+                    ) ;
+# Mostrar el nombre y el codigo de los productos que NO se vendieron
+select CODIGO,NOMBRE
+from PRODUCTO
+where codigo NOT IN (
+					SELECT COD_PRODUCTO
+                    FROM VENDE
+                    ) ;
+#MOSTRAR EL CODIGO Y EL NOMBRE DE LOS PRODUCTOS QUE SE VENDIERON ORDENADOS DE FORMA
+#ASCENDENTE POR EL NOMBRE DEL PRODUCTO
+select CODIGO,NOMBRE
+from PRODUCTO
+where codigo IN (
+					SELECT COD_PRODUCTO
+                    FROM VENDE
+                    ) 
+                    ORDER BY NOMBRE ASC;
+
+#CANTIDAD DE PRODUCTOS QUE NO SE VENDIERON
+select COUNT(*)
+from PRODUCTO
+where codigo NOT IN (
+					SELECT COD_PRODUCTO
+                    FROM VENDE
+                    ) ;
+                    
+                    
 select *
 from producto;
 select *
