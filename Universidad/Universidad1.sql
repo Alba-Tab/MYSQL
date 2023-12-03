@@ -97,5 +97,7 @@ DROP DATABASE UNIVERSIDAD;
 
 
 
+
+
 select *
 from alumno;
